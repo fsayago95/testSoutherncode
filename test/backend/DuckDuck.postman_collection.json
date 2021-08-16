@@ -1,0 +1,116 @@
+{
+	"info": {
+		"_postman_id": "72c6cb11-2cc2-4b6f-ad22-2e28caed6312",
+		"name": "DuckDuck",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "search in duck",
+			"item": [
+				{
+					"name": "Search dogecoin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Search urls\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    for (i=0; i<jsonData.Results.length; i++){",
+									"    console.log(jsonData.Results[i].FirstURL)",
+									"    }",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.duckduckgo.com/?q=dogecoin&format=json",
+							"protocol": "https",
+							"host": [
+								"api",
+								"duckduckgo",
+								"com"
+							],
+							"path": [
+								""
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "dogecoin"
+								},
+								{
+									"key": "format",
+									"value": "json"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search dogs",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Search images\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    console.log(jsonData)",
+									"   for (i=0; i<jsonData.RelatedTopics.length; i++){",
+									"        if(jsonData.RelatedTopics[i].Topics != null){",
+									"            for (j=0; j<jsonData.RelatedTopics[i].Topics.length; j++){",
+									"                if (jsonData.RelatedTopics[i].Topics[j].Icon.URL){",
+									"                    console.log(jsonData.RelatedTopics[i].Topics[j].Icon.URL, \"images with topics\")",
+									"                }",
+									"                break;",
+									"            }",
+									"        }else{",
+									"            console.log(jsonData.RelatedTopics[i].Icon.URL, \"images without topics\")",
+									"        }",
+									"   }",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://api.duckduckgo.com/?q=dogs&format=json",
+							"protocol": "https",
+							"host": [
+								"api",
+								"duckduckgo",
+								"com"
+							],
+							"path": [
+								""
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "dogs"
+								},
+								{
+									"key": "format",
+									"value": "json"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
